@@ -10,10 +10,12 @@ public class Anagrams {
 
         System.out.println(" anagrams ? " + isAnagram("CATy", "ACTy"));
         System.out.println(" anagrams ? " + isAnagramBySorting("CATVz", "ACTVz"));
-
     }
 
+    //to alphabet[] from first ,incrementing counter++, traverse second - decrement counter[],
+    // if after some counter for char != 0 -> NOT an anagram
     static boolean isAnagram(String first, String second) {
+        //pre check
         if (first.length() != second.length()) return false;//diff length - not anagrams per se
 
         first = first.replaceAll(" ", "").toLowerCase();//trim and ignore case
@@ -33,16 +35,20 @@ public class Anagrams {
             alphabet[index_of_current_char_in_alphabet]--;//decrement - so it occured in second string
         }
 
+        //traverse alphabet array
         for (int k = 0; k < 26; k++) {
-            if (alphabet[k] != 0) return false;//if some  chars were in first but not in second - they left in alphabet and is not zero
+            if (alphabet[k] != 0) {
+                return false;//if some  chars were in first but not in second - they left in alphabet and is not zero
+            }
         }
 
         return true;
     }
 
 
+    //sorting both and comparing equality
     static boolean isAnagramBySorting(String a, String b){
-        if ( a.length() != b.length()) return  false;
+        if ( a.length() != b.length()) return  false; // pre - check
 
         char[] a_chars= a.trim().toLowerCase().toCharArray();
         char[] b_chars = b.trim().toLowerCase().toCharArray();
@@ -51,7 +57,5 @@ public class Anagrams {
         Arrays.sort(b_chars);
 
         return Arrays.equals(a_chars, b_chars);
-
-
     }
 }

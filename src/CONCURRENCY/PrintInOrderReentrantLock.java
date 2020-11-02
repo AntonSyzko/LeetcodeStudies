@@ -6,8 +6,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class PrintInOrderReentrantLock {
 
-
-
     class Foo {
 
         private int threadNumber; // common sync object
@@ -19,7 +17,7 @@ public class PrintInOrderReentrantLock {
         }//init common sync object
 
         synchronized public void first(Runnable printFirst) throws InterruptedException {
-            lock.lock();//always saret with locking the lock
+            lock.lock();//always start with locking the lock
 
             try {
                 printFirst.run();
@@ -35,7 +33,7 @@ public class PrintInOrderReentrantLock {
             lock.lock();
 
             try{
-                 while (threadNumber !=2){// check the coomon object is in desired state
+                 while (threadNumber !=2){// check the common object is in desired state
                      condition.await();// if no WAIT
                  }
                  printSecond.run();

@@ -1,4 +1,4 @@
-package SULEIMANOV;
+package BACK_TO_BACK_SWE;
 
 public class MaxContiguousSubarray {
 

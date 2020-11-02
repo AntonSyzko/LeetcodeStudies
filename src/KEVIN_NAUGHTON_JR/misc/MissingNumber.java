@@ -10,7 +10,7 @@ given array of unique sorted nums , find missing one
 public class MissingNumber {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{0,  1, 2, 4, 5};
+        int[] nums = new int[]{0, 1, 2, 4, 5};
         int missing = findMissingNumGausesLaw(nums);
         System.out.println(missing);
     }
@@ -37,11 +37,8 @@ public class MissingNumber {
             sum += i;
         }
 
-
         int n = nums.length + 1;//+1 to count in the very N
 
-
         return (n * (n - 1) / 2) - sum;//gausses sum - actual sum = missing
-
     }
 }

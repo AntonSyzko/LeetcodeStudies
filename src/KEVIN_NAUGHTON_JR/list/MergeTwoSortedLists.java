@@ -15,7 +15,6 @@ public class MergeTwoSortedLists {
         ListNode n3 = new ListNode(3);
         ListNode n4 = new ListNode(8);
 
-
         n1.next = n2;
         n2.next = n3;
         n3.next = n4;
@@ -24,7 +23,6 @@ public class MergeTwoSortedLists {
         ListNode n22 = new ListNode(3);
         ListNode n33 = new ListNode(5);
 
-
         n11.next = n22;
         n22.next = n33;
 
@@ -32,17 +30,18 @@ public class MergeTwoSortedLists {
         System.out.println(merged);
     }
 
-    static ListNode mergeTwoSortedLists(ListNode list1, ListNode list2){
+    static ListNode mergeTwoSortedLists(ListNode list1, ListNode list2) {
 
         ListNode dummyNewListPointer = new ListNode(-1);//-1 is just to indicate that this FAKE DUMMY node is just a placeholder
 
         ListNode newHead = dummyNewListPointer; // future head, initially points to FAKE node above
 
-        while (list1 != null && list2 != null){//while BOTH of lists are not NULL
-            if(list1.val < list2.val){//choose smaller
+        while (list1 != null && list2 != null) {//while BOTH of lists are not NULL
+
+            if (list1.val < list2.val) {//choose smaller
                 dummyNewListPointer.next = list1;//assign to new list next
                 list1 = list1.next;//shift original list to poick next node
-            }else {
+            } else {
                 dummyNewListPointer.next = list2;
                 list2 = list2.next;
             }
@@ -50,7 +49,8 @@ public class MergeTwoSortedLists {
             dummyNewListPointer = dummyNewListPointer.next;//shift new list to assign next smaller of two as we traverse in while
         }
 
-        if(list1 != null){//if list 1 after whle loop still has elements
+        //LEFT OVERS
+        if (list1 != null) {//if list 1 after whle loop still has elements
             dummyNewListPointer.next = list1;//assign ALL of them in bulk to new list
         } else {
             dummyNewListPointer.next = list2;//or list 2 still has elements

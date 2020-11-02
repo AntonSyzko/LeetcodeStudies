@@ -19,48 +19,49 @@ public class SerializeDesirielizeTree {
         node1.right = node3;
 
         String treeSerialized = serializeTree(node1);
-        System.out.println(treeSerialized);
+
+        System.out.println("Serialized \r\n "+treeSerialized);
 
         TreeNode deserializedBack = deserializeToTree(treeSerialized);
 
-        System.out.println(deserializedBack);
-
-
+        System.out.println("Deserialized \r\n "+deserializedBack);
 
     }
 
     static String serializeTree(TreeNode root){
 
-        if(root == null) return "X,";//recusive base case
+        if(root == null) return "X,";    //recusive BASE case
 
         String leftSubtree = serializeTree(root.left);//recursion
         String rightSubtree = serializeTree(root.right);
 
-        return root.val + "," + leftSubtree + rightSubtree;//aggregate recusive results , adding separator
+        return root.val + "," + leftSubtree + rightSubtree;//aggregate recursive results , adding separator
 
     }
 
     static TreeNode deserializeToTree(String serialized){
-        Queue<String> nodesLeft = new LinkedList<>();//que will store nodes as  we traverse
-        nodesLeft.addAll(Arrays.asList(serialized.split(",")));
+        Queue<String> nodesQueue = new LinkedList<>();//que will store nodes as  we traverse
+        nodesQueue.addAll(Arrays.asList(serialized.split(",")));
 
-        return deserializedHelper(nodesLeft);
+        return deserializedHelper(nodesQueue);
     }
 
     private static TreeNode deserializedHelper(Queue<String> nodesLeft) {
-        //get current from top of QUEUE
+        //get current String Node from top of QUEUE
         String currentNodeValue = nodesLeft.poll();
-        //means end of branch - null - no more child nodes - no need to construct tree onwards
+
+        // X means end of branch - null - no more child nodes - no need to construct tree onwards
         if(currentNodeValue.equals("X")){
-            return null;//recursion base case exit
+            return null;//recursion BASE  case exit
         }
+
         //form a new node
         TreeNode newNode = new TreeNode(Integer.parseInt(currentNodeValue));
 
-        //recursion will stop at X and paste NULL,
+        //recursion will stop at X and paste NULL - this is the END of LEFT subtree
         newNode.left = deserializedHelper(nodesLeft);
 
-        //rest of nodes in QUE will be automatically from RIGHT subtree
+        //rest of nodes in QUE will be automatically form RIGHT subtree
         newNode.right = deserializedHelper(nodesLeft);
 
         return newNode;

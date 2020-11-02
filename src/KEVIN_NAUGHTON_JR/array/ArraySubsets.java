@@ -11,7 +11,6 @@ given array of ints, find all possible subsets, power sets
 public class ArraySubsets {
     public static void main(String[] args) {
 
-
         List<List<Integer>> powerSets = subsets(new int[]{1,2,3});
         powerSets.stream().forEach(System.out::println);
     }

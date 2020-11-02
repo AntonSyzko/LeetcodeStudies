@@ -28,8 +28,6 @@ public class AddTwoNumbers {
 
         ListNode res = addTwoNums(l1, l2);
         System.out.println(res);
-
-
     }
 
     public static ListNode addTwoNums(ListNode ln1, ListNode ln2) {
@@ -48,19 +46,19 @@ public class AddTwoNumbers {
 
             dozenCarrier = sum / 10;//carry tenth over
 //current was pointing to head as a placeholder , initialize first node
-            currentNode.next = new ListNode(sum%10);// new node attached to placeholder with new value without tenth carrier
+            currentNode.next = new ListNode(sum % 10);// new node attached to placeholder with new value without tenth carrier
             currentNode = currentNode.next;//switch to next Node
 
 
             if (l1_pointer != null) {
-                l1_pointer = l1_pointer.next;//swith to next
+                l1_pointer = l1_pointer.next;//shift to next
             }
 
             if (l2_pointer != null) {
-                l2_pointer = l2_pointer.next;//swith to next
+                l2_pointer = l2_pointer.next;//shift to next
             }
 
-            if (dozenCarrier > 0) {//if af ter all treversed dozen carrier still more than  0
+            if (dozenCarrier > 0) {//if af ter all traversed dozen carrier still more than  0
                 currentNode.next = new ListNode(dozenCarrier);//put it in brand new dedicated leading node
             }
         }

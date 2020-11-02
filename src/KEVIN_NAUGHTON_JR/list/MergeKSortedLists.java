@@ -1,7 +1,6 @@
 package KEVIN_NAUGHTON_JR.list;
 
 
-
 import SULEIMANOV.ListNode;
 
 import java.util.ArrayList;
@@ -29,44 +28,44 @@ public class MergeKSortedLists {
         ListNode two2 = new ListNode(3);
         ListNode two3 = new ListNode(4);
 
-
-
-
         one1.next = one2;
         one2.next = one3;
 
         two1.next = two2;
         two2.next = two3;
 
-        ListNode[] lists = new ListNode[]{one1,two1};
-
+        ListNode[] lists = new ListNode[]{one1, two1};
 
         ListNode merged = mergeKSortedLists(lists);
 
-        while (merged != null){
+        while (merged != null) {
             System.out.print(merged.val + " -> ");
             merged = merged.next;
         }
 
     }
 
-    static ListNode mergeKSortedLists(ListNode [] lists){
+    static ListNode mergeKSortedLists(ListNode[] lists) {
 
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();//mn heap to store and sort ALL nodes
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();//MIN heap to store and sort ALL nodes
 
-        for(ListNode head : lists){//traverse ALL list nodes of all lists
-            while (head !=null){//while smth to traverse within EACH list itself
+        for (ListNode head : lists) {//traverse ALL list nodes of all lists
+
+            while (head != null) {//while smth to traverse within EACH list itself
+
                 minHeap.add(head.val);//add each and evey to min heap
+
                 head = head.next;//move on in traversal
             }
-
         }
 
         ListNode dummyPointer = new ListNode(-1);//dummy
         ListNode head = dummyPointer;//new head
 
-        while (!minHeap.isEmpty()){//while min heap has smth
+        while (!minHeap.isEmpty()) {//while min heap has smth
+
             head.next = new ListNode(minHeap.remove());//extract from min heap and add to new list
+
             head = head.next;//traverse in new lest - move on
         }
 

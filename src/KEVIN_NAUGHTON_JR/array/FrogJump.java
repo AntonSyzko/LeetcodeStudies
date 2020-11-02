@@ -9,7 +9,6 @@ public class FrogJump {
 
     }
 
-
     static boolean canCross(int[] stones) {
         for (int i = 3; i < stones.length; i++) {
             if (stones[i] > stones[i - 1] * 2) {//math to see if distance between very stones is too high
@@ -37,7 +36,7 @@ public class FrogJump {
             int jumpDistance = jumps.pop();
 
             for (int i = jumpDistance - 1; i <= jumpDistance + 1; i++) {//can jump only k-1, k , k+1
-                if (i <= 0) {//if occured on zero index
+                if (i <= 0) {//if occurred on zero index
                     continue;//ignore
                 }
                 int nextPosition = position + i;

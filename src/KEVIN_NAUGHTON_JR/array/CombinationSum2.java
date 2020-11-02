@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /*
-given array aof candidates and tartet to from sum from candidates
+given array aof candidates and target to from sum from candidates
 no duplicates
 
  */

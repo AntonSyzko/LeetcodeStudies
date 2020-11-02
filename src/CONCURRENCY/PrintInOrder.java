@@ -5,8 +5,6 @@ package CONCURRENCY;
  */
 public class PrintInOrder {
 
-  
-
     class Foo {
         int threadNumber;
 

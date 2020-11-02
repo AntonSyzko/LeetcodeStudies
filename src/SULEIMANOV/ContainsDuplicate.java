@@ -31,7 +31,6 @@ public class ContainsDuplicate {
                 return true;//is dupliacte
             }
         }
-
         return false;
     }
 }

@@ -16,14 +16,14 @@ public class StockMerchant {
         if (stock.length == 0) return 0;
 
         int num_pairs = 0;
-        Set<Integer> pair_counter = new HashSet<>();
+        Set<Integer> pair_counter_set = new HashSet<>();
 
         for(int i =0 ; i <  stock.length; i++){
-            if(!pair_counter.contains(stock[i])){
-                pair_counter.add(stock[i]);
+            if(!pair_counter_set.contains(stock[i])){
+                pair_counter_set.add(stock[i]);
             } else {
                 num_pairs ++;
-                pair_counter.remove(stock[i]);
+                pair_counter_set.remove(stock[i]);
             }
         }
 

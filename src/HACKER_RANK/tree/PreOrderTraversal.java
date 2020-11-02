@@ -35,7 +35,6 @@ public class PreOrderTraversal {
     static void preOrderRecursive(TreeNode root) {
         if (root == null) return;
 
-
         System.out.print(root.val + " ");
         preOrderRecursive(root.left);
         preOrderRecursive(root.right);
