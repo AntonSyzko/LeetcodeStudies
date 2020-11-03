@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
 
 /*
@@ -33,12 +34,20 @@ Duplicate keys may exist within the input array and should be handled as a singl
  */
 public class Metro1 {
 
+    @Test
+    public void test1()
+    {
+
+        assertArrayEquals(new String[] { "JingJing:1100", "Swati:500", "Steve:100" },
+                addAndReturn(200, "JingJing", new String[] { "Steve:100", "JingJing:900", "Swati:500" }));
+    }
 
     @Test
     public void testNegativeValuePassed() {
         String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
         String[] res = addAndReturn(-1, "negative", testArray);
         assertEquals(0, res.length);
+        assertArrayEquals(res,new String[]{});
     }
 
     @Test
@@ -46,6 +55,7 @@ public class Metro1 {
         String[] testArray = {"Steve:-100", "JingJing:-900", "Swati:500"};
         String[] res = addAndReturn(100, "test", testArray);
         assertEquals(0, res.length);
+        assertArrayEquals(res,new String[]{});
     }
 
     @Test
@@ -53,6 +63,7 @@ public class Metro1 {
         String[] testArray = {"Steve:0.25", "JingJing:900", "Swati:500"};
         String[] res = addAndReturn(100, "test", testArray);
         assertEquals(0, res.length);
+        assertArrayEquals(res,new String[]{});
     }
 
     @Test
@@ -60,6 +71,8 @@ public class Metro1 {
         String[] testArray = {"Steve:25L", "JingJing:900", "Swati:500"};
         String[] res = addAndReturn(100, "test", testArray);
         assertEquals(0, res.length);
+        assertArrayEquals(res,new String[]{});
+
     }
 
     @Test
@@ -67,6 +80,8 @@ public class Metro1 {
         String[] testArray = {"Steve:25E8", "JingJing:900", "Swati:500"};
         String[] res = addAndReturn(100, "test", testArray);
         assertEquals(0, res.length);
+        assertArrayEquals(res,new String[]{});
+
     }
 
     @Test
@@ -74,6 +89,8 @@ public class Metro1 {
         String[] testArray = {"Steve:1E240", "JingJing:900", "Swati:500"};
         String[] res = addAndReturn(100, "test", testArray);
         assertEquals(0, res.length);
+        assertArrayEquals(res,new String[]{});
+
     }
 
     @Test
@@ -81,20 +98,24 @@ public class Metro1 {
         String[] testArray = {};
         String[] res = addAndReturn(100, "test", testArray);
         assertEquals(1, res.length);
+        assertArrayEquals(res,new String[]{"test:100"});
+
     }
 
     @Test
     public void testEmptyKeyPassed() {
         String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(100, "", testArray);
+        String[] res = addAndReturn(4, "", testArray);
         assertEquals(4, res.length);
+        assertArrayEquals(res,new String[]{"JingJing:900","Swati:500","Steve:100",":4"});
     }
 
     @Test
     public void testNewEntryAdded() {
         String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(100, "test", testArray);
+        String[] res = addAndReturn(10, "test", testArray);
         assertEquals(4, res.length);
+        assertArrayEquals(res,new String[]{"JingJing:900","Swati:500","Steve:100","test:10"});
     }
 
     @Test
@@ -104,6 +125,7 @@ public class Metro1 {
         assertNotEquals(4, res.length);
         assertEquals(3, res.length);
         assertEquals("1900", res[0].split(":")[1]);
+        assertArrayEquals(res,new String[]{"JingJing:1900","Swati:500","Steve:100"});
     }
 
     @Test
