@@ -34,7 +34,6 @@ Duplicate keys may exist within the input array and should be handled as a singl
 public class Metro1 {
 
 
-
     @Test
     public void testNegativeValuePassed() {
         String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
@@ -147,9 +146,8 @@ public class Metro1 {
             return new String[]{};
         }
 
-        Map<String, Integer> kvs = inputAsList.stream()
-                .map(elem -> elem.split(":")).
-                        collect(Collectors.toMap(e -> e[0], e -> Integer.parseInt(e[1])));
+        Map<String, Integer> kvs = inputAsMap.entrySet().stream().collect(
+                Collectors.toMap(e -> e.getKey(), e -> Integer.parseInt(e.getValue())));
 
         kvs.merge(key, value, Integer::sum);
 
