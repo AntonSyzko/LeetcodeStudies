@@ -19,6 +19,7 @@ public class RemoveVowelsFromString {
         vowelsSet.add('i');
         vowelsSet.add('o');
         vowelsSet.add('u');
+
         for (char each : input.toCharArray()) {
             if (!vowelsSet.contains(each)) {
                 sb.append(each);

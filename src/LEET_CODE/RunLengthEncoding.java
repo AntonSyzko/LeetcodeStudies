@@ -8,25 +8,33 @@ public class RunLengthEncoding {
         System.out.println(encodeString(unencoded));
     }
 
-        static String encodeString(String unencoded){
-        String encodedString = "";
+    static String encodeString(String unencoded) {
+
+        String encodedString = "";//res
         int count = 1;
         char currentChar = unencoded.charAt(0);
 
-        for(int i = 1; i < unencoded.length(); i++){
+        //from 1 since we have  first in variable
+        for (int i = 1; i < unencoded.length(); i++) {
+
             char nextChar = unencoded.charAt(i);
 
-            if(nextChar == currentChar){
-                count ++;
-            }else{
+            if (nextChar == currentChar) {//same chars
 
-                encodedString += String.valueOf(count) + currentChar;
-                count=1;
-                currentChar = nextChar;
+                count++;//same count ++
+
+            } else {//different chars
+
+                encodedString += String.valueOf(count) + currentChar;//aggregate what we have  so far
+
+                count = 1;//reset count to 1 ( new char is foind so it is 1 here already )
+
+                currentChar = nextChar;//reset curr char to this here found new one
             }
 
         }
 
+        //final aggregation
         encodedString += String.valueOf(count) + currentChar;
 
         return encodedString;

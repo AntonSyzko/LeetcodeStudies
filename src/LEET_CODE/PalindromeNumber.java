@@ -8,12 +8,11 @@ public class PalindromeNumber {
         System.out.printf(" is palindrome %d - %b", 1221, isPalindrome);
         System.out.println(" \r\nis string a palindropme " + isPalindropmeString("race cAr"));
         System.out.println(" is string a palindropme " + isPalindropmeString("race a cAr"));
-
     }
 
     static boolean isPalindrome2(int numba) {
-        if (numba == 0) return true;
-        if (numba < 0 || numba % 10 == 0) return false;
+        if (numba == 0) return true;//zero is pal
+        if (numba < 0 || numba % 10 == 0) return false;//negative not palindrome, and 1000 not palindromes
 
         int reversed_half = 0;
 
@@ -30,12 +29,33 @@ public class PalindromeNumber {
         }
     }
 
+
+    //sliding window from both sides , comparing equality
+    static boolean isPalindropmeString(String input) {
+        if (input == null) return false;
+
+        if (input.length() == 1) return true;
+
+        input = input.trim().toLowerCase().replaceAll(" ", "");//no spaces, all same case
+
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start <= end) {//will stop at half - faster
+            if (input.charAt(start) != input.charAt(end)) return false;
+            start++;
+            end--;
+        }
+        return true;
+    }
+
     static boolean isPalindrome(int numba) {
-        if (numba == 0) return true;
+        if (numba == 0) return true;//zero is pal
 
         if (numba < 0 || numba % 10 == 0) return false;
 
         int reversed_half = 0;
+
         while (numba > reversed_half) {
             int pop_last_digit_of_the_number = numba % 10;
             numba /= 10;
@@ -48,24 +68,4 @@ public class PalindromeNumber {
             return false;
         }
     }
-
-    static boolean isPalindropmeString(String input) {
-        if(input == null) return false;
-
-        if(input.length()==1) return true;
-
-        input = input.trim().toLowerCase().replaceAll(" ","");//no spaces, all same case
-
-        int start = 0;
-        int end = input.length()-1;
-
-        while (start<=end){//will stop at half - faster
-            if(input.charAt(start) != input.charAt(end)) return false;
-            start++;
-            end--;
-        }
-
-        return true;
-
-        }
-    }
+}

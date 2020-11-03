@@ -34,128 +34,6 @@ Duplicate keys may exist within the input array and should be handled as a singl
  */
 public class Metro1 {
 
-    @Test
-    public void test1()
-    {
-
-        assertArrayEquals(new String[] { "JingJing:1100", "Swati:500", "Steve:100" },
-                addAndReturn(200, "JingJing", new String[] { "Steve:100", "JingJing:900", "Swati:500" }));
-    }
-
-    @Test
-    public void testNegativeValuePassed() {
-        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(-1, "negative", testArray);
-        assertEquals(0, res.length);
-        assertArrayEquals(res,new String[]{});
-    }
-
-    @Test
-    public void testNegativeValusPresentInInitialArray() {
-        String[] testArray = {"Steve:-100", "JingJing:-900", "Swati:500"};
-        String[] res = addAndReturn(100, "test", testArray);
-        assertEquals(0, res.length);
-        assertArrayEquals(res,new String[]{});
-    }
-
-    @Test
-    public void testNonIntegerValuesPresentInInitialArray() {
-        String[] testArray = {"Steve:0.25", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(100, "test", testArray);
-        assertEquals(0, res.length);
-        assertArrayEquals(res,new String[]{});
-    }
-
-    @Test
-    public void testLongValuesPresentInInitialArray() {
-        String[] testArray = {"Steve:25L", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(100, "test", testArray);
-        assertEquals(0, res.length);
-        assertArrayEquals(res,new String[]{});
-
-    }
-
-    @Test
-    public void testExponentialValuesPresentInInitialArray() {
-        String[] testArray = {"Steve:25E8", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(100, "test", testArray);
-        assertEquals(0, res.length);
-        assertArrayEquals(res,new String[]{});
-
-    }
-
-    @Test
-    public void testHexValuesPresentInInitialArray() {
-        String[] testArray = {"Steve:1E240", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(100, "test", testArray);
-        assertEquals(0, res.length);
-        assertArrayEquals(res,new String[]{});
-
-    }
-
-    @Test
-    public void testEmptyArrayPassed() {
-        String[] testArray = {};
-        String[] res = addAndReturn(100, "test", testArray);
-        assertEquals(1, res.length);
-        assertArrayEquals(res,new String[]{"test:100"});
-
-    }
-
-    @Test
-    public void testEmptyKeyPassed() {
-        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(4, "", testArray);
-        assertEquals(4, res.length);
-        assertArrayEquals(res,new String[]{"JingJing:900","Swati:500","Steve:100",":4"});
-    }
-
-    @Test
-    public void testNewEntryAdded() {
-        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(10, "test", testArray);
-        assertEquals(4, res.length);
-        assertArrayEquals(res,new String[]{"JingJing:900","Swati:500","Steve:100","test:10"});
-    }
-
-    @Test
-    public void testDuplicatedKeysAggregated() {
-        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(1000, "JingJing", testArray);
-        assertNotEquals(4, res.length);
-        assertEquals(3, res.length);
-        assertEquals("1900", res[0].split(":")[1]);
-        assertArrayEquals(res,new String[]{"JingJing:1900","Swati:500","Steve:100"});
-    }
-
-    @Test
-    public void testRetrunedInDescendingOrder() {
-        String[] testArray = {"Steve:10", "JingJing:900", "Swati:500"};
-        String[] res = addAndReturn(100000, "Test", testArray);
-        assertEquals(4, res.length);
-        assertEquals("100000", res[0].split(":")[1]);
-        assertEquals("900", res[1].split(":")[1]);
-        assertEquals("500", res[2].split(":")[1]);
-        assertEquals("10", res[res.length - 1].split(":")[1]);
-    }
-
-    @Test
-    public void testRetrunedIsOfArrayType() {
-        String[] testArray = {"Steve:10"};
-        assertTrue(addAndReturn(10, "Test", testArray).getClass().isArray());
-    }
-
-    @Test
-    public void testRetrunedIsSemicolonSeparatedArray() {
-        String[] testArray = {"Steve:10"};
-        String[] res = addAndReturn(1, "Test", testArray);
-        assertEquals(2, res.length);
-        assertTrue(res[0].contains(":"));
-        assertEquals(res[0].split(":")[0], "Steve");
-        assertEquals(res[0].split(":")[1], "10");
-    }
-
-
     public static String[] addAndReturn(int value, String key, String[] input) {
 
         List<String> inputAsList = Arrays.asList(input);
@@ -189,5 +67,125 @@ public class Metro1 {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+
+    @Test
+    public void test1() {
+        assertArrayEquals(new String[]{"JingJing:1100", "Swati:500", "Steve:100"},
+                addAndReturn(200, "JingJing", new String[]{"Steve:100", "JingJing:900", "Swati:500"}));
+    }
+
+    @Test
+    public void testNegativeValuePassed() {
+        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(-1, "negative", testArray);
+        assertEquals(0, res.length);
+        assertArrayEquals(res, new String[]{});
+    }
+
+    @Test
+    public void testNegativeValusPresentInInitialArray() {
+        String[] testArray = {"Steve:-100", "JingJing:-900", "Swati:500"};
+        String[] res = addAndReturn(100, "test", testArray);
+        assertEquals(0, res.length);
+        assertArrayEquals(res, new String[]{});
+    }
+
+    @Test
+    public void testNonIntegerValuesPresentInInitialArray() {
+        String[] testArray = {"Steve:0.25", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(100, "test", testArray);
+        assertEquals(0, res.length);
+        assertArrayEquals(res, new String[]{});
+    }
+
+    @Test
+    public void testLongValuesPresentInInitialArray() {
+        String[] testArray = {"Steve:25L", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(100, "test", testArray);
+        assertEquals(0, res.length);
+        assertArrayEquals(res, new String[]{});
+
+    }
+
+    @Test
+    public void testExponentialValuesPresentInInitialArray() {
+        String[] testArray = {"Steve:25E8", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(100, "test", testArray);
+        assertEquals(0, res.length);
+        assertArrayEquals(res, new String[]{});
+
+    }
+
+    @Test
+    public void testHexValuesPresentInInitialArray() {
+        String[] testArray = {"Steve:1E240", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(100, "test", testArray);
+        assertEquals(0, res.length);
+        assertArrayEquals(res, new String[]{});
+
+    }
+
+    @Test
+    public void testEmptyArrayPassed() {
+        String[] testArray = {};
+        String[] res = addAndReturn(100, "test", testArray);
+        assertEquals(1, res.length);
+        assertArrayEquals(res, new String[]{"test:100"});
+
+    }
+
+    @Test
+    public void testEmptyKeyPassed() {
+        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(4, "", testArray);
+        assertEquals(4, res.length);
+        assertArrayEquals(res, new String[]{"JingJing:900", "Swati:500", "Steve:100", ":4"});
+    }
+
+    @Test
+    public void testNewEntryAdded() {
+        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(10, "test", testArray);
+        assertEquals(4, res.length);
+        assertArrayEquals(res, new String[]{"JingJing:900", "Swati:500", "Steve:100", "test:10"});
+    }
+
+    @Test
+    public void testDuplicatedKeysAggregated() {
+        String[] testArray = {"Steve:100", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(1000, "JingJing", testArray);
+        assertNotEquals(4, res.length);
+        assertEquals(3, res.length);
+        assertEquals("1900", res[0].split(":")[1]);
+        assertArrayEquals(res, new String[]{"JingJing:1900", "Swati:500", "Steve:100"});
+    }
+
+    @Test
+    public void testRetrunedInDescendingOrder() {
+        String[] testArray = {"Steve:10", "JingJing:900", "Swati:500"};
+        String[] res = addAndReturn(100000, "Test", testArray);
+        assertEquals(4, res.length);
+        assertEquals("100000", res[0].split(":")[1]);
+        assertEquals("900", res[1].split(":")[1]);
+        assertEquals("500", res[2].split(":")[1]);
+        assertEquals("10", res[res.length - 1].split(":")[1]);
+    }
+
+    @Test
+    public void testRetrunedIsOfArrayType() {
+        String[] testArray = {"Steve:10"};
+        assertTrue(addAndReturn(10, "Test", testArray).getClass().isArray());
+    }
+
+    @Test
+    public void testRetrunedIsSemicolonSeparatedArray() {
+        String[] testArray = {"Steve:10"};
+        String[] res = addAndReturn(1, "Test", testArray);
+        assertEquals(2, res.length);
+        assertTrue(res[0].contains(":"));
+        assertEquals(res[0].split(":")[0], "Steve");
+        assertEquals(res[0].split(":")[1], "10");
     }
 }

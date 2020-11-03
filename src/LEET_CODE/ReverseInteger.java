@@ -9,22 +9,23 @@ public class ReverseInteger {
 
     }
 
-    static int reverseInteger(int input){
-        if(input<=9 && input >=-9) return input;
+    static int reverseInteger(int input) {
+        if (input <= 9 && input >= -9) return input;
 
         int res = 0;
         int pop = 0;
-        while (input !=0){
-             pop = input%10;
+
+        while (input != 0) {
+            pop = input % 10;
             input /= 10;
 
-            if(res >= Integer.MAX_VALUE / 10 && pop>7){
+            if (res >= Integer.MAX_VALUE / 10 && pop > 7) {
                 return 0;
             }
-            if( res <= Integer.MIN_VALUE && pop <-8){
+            if (res <= Integer.MIN_VALUE && pop < -8) {
                 return 0;
             }
-            res = (res*10)+pop;
+            res = (res * 10) + pop;
         }
         return res;
     }
