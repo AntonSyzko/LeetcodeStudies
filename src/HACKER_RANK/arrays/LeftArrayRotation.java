@@ -20,13 +20,13 @@ public class LeftArrayRotation {
         int index = 0;
         int rotated_index = rotation_step;
 
-        while (rotated_index < size){
+        while (rotated_index < size){//populate rotated same as original
             rotated[index] = array[rotated_index];
             index ++;
             rotated_index ++;
         }
 
-        rotated_index = 0;
+        rotated_index = 0;//reset rotated index to 0
 
 
         while (rotated_index < rotation_step){
